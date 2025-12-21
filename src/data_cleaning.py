@@ -220,3 +220,12 @@ def filter_if_one_present(cluster_df, filt_categories):
 
     mask = cluster_df['categories_tags'].apply(check_row)
     return cluster_df[mask].copy()
+
+def create_demo_data(cluster_df_dist_cats):
+    demo_df = (
+        cluster_df_dist_cats
+        .groupby("nova_group", group_keys=False)
+        .sample(frac=20 / len(cluster_df_dist_cats), random_state=42)
+    )
+    cluster_df_dist_cats = cluster_df_dist_cats.drop(index=demo_df.index)
+    return demo_df, cluster_df_dist_cats
