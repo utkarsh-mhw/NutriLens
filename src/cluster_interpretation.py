@@ -164,55 +164,55 @@ def keep_frequent_categories(cluster_df, keep_cats):
     print(f"Filtered: {len(df_filtered)} products ({len(df_filtered)/len(cluster_df)*100:.1f}%)")
     return df_filtered
 
-def recommend_alternates(df, product_name, product_nova, topN=3, isSameCluster=True):
+# def recommend_alternates(df, product_name, product_nova, topN=3, isSameCluster=True):
 
     
 
-    df = df.copy()
-    df['category_list'] = df['categories_tags'].fillna('').apply(lambda x: [c.strip() for c in x.split(',')])
+#     df = df.copy()
+#     df['category_list'] = df['categories_tags'].fillna('').apply(lambda x: [c.strip() for c in x.split(',')])
     
 
-    product_row = df[df['product_name'] == product_name]
+#     product_row = df[df['product_name'] == product_name]
     
-    if product_row.empty:
-        return "Sorry, we couldn't find any suitable alternates. We'll work on improving our recommendations!"
+#     if product_row.empty:
+#         return "Sorry, we couldn't find any suitable alternates. We'll work on improving our recommendations!"
     
-    product_row = product_row.iloc[0]
-    user_categories = set(product_row['category_list'])
-    user_cluster = product_row['cluster_id']
-    
-
-    candidates = df[df['product_name'] != product_name].copy()
-    
-    if isSameCluster:
-        candidates = candidates[candidates['cluster_id'] == user_cluster]
+#     product_row = product_row.iloc[0]
+#     user_categories = set(product_row['category_list'])
+#     user_cluster = product_row['cluster_id']
     
 
-    candidates = candidates[candidates['category_list'].apply(lambda cats: len(user_categories.intersection(cats)) > 0)]
+#     candidates = df[df['product_name'] != product_name].copy()
+    
+#     if isSameCluster:
+#         candidates = candidates[candidates['cluster_id'] == user_cluster]
     
 
-    healthier_candidates = candidates[candidates['nova_group'] < product_nova]
-    
-    if not healthier_candidates.empty:
-        healthier_candidates = healthier_candidates.sort_values('nova_group') 
-        top_recs = list(zip(healthier_candidates['product_name'], healthier_candidates['nova_group']))[:topN]
-        return top_recs
+#     candidates = candidates[candidates['category_list'].apply(lambda cats: len(user_categories.intersection(cats)) > 0)]
     
 
-    if product_nova == 1:
-        same_nova_candidates = candidates[candidates['nova_group'] == 1]
-        if not same_nova_candidates.empty:
-            top_recs = list(zip(same_nova_candidates['product_name'], same_nova_candidates['nova_group']))[:topN]
-            return [("You have a very least-processed food but here is an alternate:")] + top_recs
+#     healthier_candidates = candidates[candidates['nova_group'] < product_nova]
+    
+#     if not healthier_candidates.empty:
+#         healthier_candidates = healthier_candidates.sort_values('nova_group') 
+#         top_recs = list(zip(healthier_candidates['product_name'], healthier_candidates['nova_group']))[:topN]
+#         return top_recs
     
 
-    same_nova_candidates = candidates[candidates['nova_group'] == product_nova]
-    if not same_nova_candidates.empty:
-        top_recs = list(zip(same_nova_candidates['product_name'], same_nova_candidates['nova_group']))[:topN]
-        return [("Couldn't find less processed options. Try these with same NOVA:", None)] + top_recs
+#     if product_nova == 1:
+#         same_nova_candidates = candidates[candidates['nova_group'] == 1]
+#         if not same_nova_candidates.empty:
+#             top_recs = list(zip(same_nova_candidates['product_name'], same_nova_candidates['nova_group']))[:topN]
+#             return [("You have a very least-processed food but here is an alternate:")] + top_recs
     
 
-    return "Sorry, we couldn't find any suitable alternates. We'll work on improving our recommendations!"
+#     same_nova_candidates = candidates[candidates['nova_group'] == product_nova]
+#     if not same_nova_candidates.empty:
+#         top_recs = list(zip(same_nova_candidates['product_name'], same_nova_candidates['nova_group']))[:topN]
+#         return [("Couldn't find less processed options. Try these with same NOVA:", None)] + top_recs
+    
+
+#     return "Sorry, we couldn't find any suitable alternates. We'll work on improving our recommendations!"
 
 
 
