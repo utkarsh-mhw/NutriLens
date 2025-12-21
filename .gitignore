@@ -1,0 +1,11 @@
+models/
+data/
+notebooks/archived/
+src/__pycache__/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+nutrilens_env.yml
+.ipynb_checkpoints/
