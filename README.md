@@ -1,5 +1,4 @@
-# ML-project
-Project for ML 7641
+# NutriLens
  
  `/notebooks/`: Contains Jupyter notebooks for data analysis, data cleaning, supervised learning, and unsupervised learning experiments.
 
