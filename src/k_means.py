@@ -24,15 +24,18 @@ def train_test_split_stratified(df, test_size=0.1, random_state=42):
     
     return train_df, test_df
 
-def extract_embeddings(df, start_col=16):
+def extract_embeddings(df, start_col=18):
     ## assumes first 3 columsna re metadata, change this if you change the data format
     
+    exclude_cols = ['code', 'additive_density', 'allergens_en']
     # Extract metadata
     meta_cols = df.columns[:start_col].tolist()
+    # meta_cols = [col for col in meta_cols if col not in exclude_cols]
     df_meta = df[meta_cols].copy()
     
     # Extract embeddings
     embedding_cols = df.columns[start_col:].tolist()
+    # embedding_cols = [col for col in embedding_cols if col not in exclude_cols]
     embeddings = df[embedding_cols].values
     
     return embeddings, df_meta
