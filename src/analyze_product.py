@@ -5,7 +5,7 @@ from sklearn.cluster import KMeans
 import umap
 import time
 
-from k_means import extract_embeddings
+from src.k_means import extract_embeddings
 
 
 _models_loaded = False
@@ -20,7 +20,7 @@ def _load_all_models():
     
     if not _models_loaded:
         
-        models_dir = '../models/'
+        models_dir = 'models/'
         
         with open(f'{models_dir}xgb_nova_model.pkl', 'rb') as f:
             xgb_model = pickle.load(f)
@@ -53,9 +53,9 @@ def _load_all_models():
             'kmeans': kmeans_model
         }
         
-        _demo_data = pd.read_csv("../data/analysis_data/demo_data.csv", index_col=0)
+        _demo_data = pd.read_csv("data/analysis_data/demo_data.csv", index_col=0)
         
-        _recommendation_db = pd.read_csv("../data/analysis_data/kmeans_output_final.csv")
+        _recommendation_db = pd.read_csv("data/analysis_data/kmeans_output_final.csv")
         _recommendation_db['category_list'] = _recommendation_db['categories_tags'].fillna('').apply(
             lambda x: [c.strip() for c in x.split(',')] if isinstance(x, str) else []
         )
