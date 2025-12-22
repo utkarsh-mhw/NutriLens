@@ -3,11 +3,13 @@ import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 import umap
+import time
 
 from k_means import *
 
 
 def predict_cluster(demo_product):
+    start_time = time.time()
     
     # open models and reducer
     models_dir = '../models/'
@@ -18,16 +20,30 @@ def predict_cluster(demo_product):
     with open(f'{models_dir}kmeans_model.pkl', 'rb') as f:
             kmeans_model = pickle.load(f)
 
+    load_time = time.time()
+
     product_embeddings, product_meta = extract_embeddings(demo_product)
     embeddings_reduced = umap_reducer.transform(product_embeddings)
     cluster_ids = kmeans_model.predict(embeddings_reduced)
+
+    end_time = time.time()
+    print(f"[predict_cluster] Model load time: {load_time - start_time:.4f}s")
+    print(f"[predict_cluster] Prediction time: {end_time - load_time:.4f}s")
+    print(f"[predict_cluster] Total time: {end_time - start_time:.4f}s")
+
     return cluster_ids[0]
 
 
     
 def fetch_user_product_details(product_name):
+    start_time = time.time()
+
     temp_df = pd.read_csv("../data/analysis_data/demo_data.csv", index_col=0)
     lookup_product = temp_df[temp_df['product_name'] == product_name]
+    
+    end_time = time.time()
+    print(f"[fetch_user_product_details] Time taken: {end_time - start_time:.4f}s")
+
     return lookup_product
 
 
@@ -38,9 +54,14 @@ def recommend_alternates(product_name, product_nova, topN=3, isSameCluster=True)
     product_row['cluster_id'] = product_cluster_id
     product_row['category_list'] = product_row['categories_tags'].fillna('').apply(lambda x: [c.strip() for c in x.split(',')])
 
+    start_time = time.time()
     df = pd.read_csv("../data/analysis_data/kmeans_output_final.csv")
     df = df.copy()
+    time_to_load = time.time()
     df['category_list'] = df['categories_tags'].fillna('').apply(lambda x: [c.strip() for c in x.split(',')])
+    time_to_clean = time.time()
+    print(f"[loading cluster outputs] Time taken: {time_to_load - start_time:.4f}s")
+    print(f"[cleaning categories] Time taken: {time_to_clean - time_to_load:.4f}s")
     
 
 
