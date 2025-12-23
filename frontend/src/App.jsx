@@ -1,0 +1,263 @@
+import React, { useState } from 'react';
+import { Camera, Zap, TrendingDown, Activity, Heart, AlertCircle } from 'lucide-react';
+
+const NutriLens = () => {
+  const [view, setView] = useState('landing');
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [analysisData, setAnalysisData] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const demoProducts = [
+    { id: 1, name: 'Tortellini Rosa', image: '🍝', category: 'Pasta' },
+    { id: 2, name: 'Coca Cola', image: '🥤', category: 'Beverages' },
+    { id: 3, name: 'Granola Bar', image: '🍫', category: 'Snacks' },
+    { id: 4, name: 'Whole Wheat Bread', image: '🍞', category: 'Bakery' },
+    { id: 5, name: 'Greek Yogurt', image: '🥛', category: 'Dairy' },
+    { id: 6, name: 'Potato Chips', image: '🥔', category: 'Snacks' },
+    { id: 7, name: 'Orange Juice', image: '🧃', category: 'Beverages' },
+    { id: 8, name: 'Protein Bar', image: '🍫', category: 'Snacks' },
+    { id: 9, name: 'Brown Rice', image: '🍚', category: 'Grains' },
+    { id: 10, name: 'Instant Noodles', image: '🍜', category: 'Pasta' },
+    { id: 11, name: 'Almond Milk', image: '🥛', category: 'Dairy' },
+    { id: 12, name: 'Trail Mix', image: '🥜', category: 'Snacks' },
+    { id: 13, name: 'Frozen Pizza', image: '🍕', category: 'Frozen' },
+    { id: 14, name: 'Energy Drink', image: '⚡', category: 'Beverages' },
+    { id: 15, name: 'Cereal', image: '🥣', category: 'Breakfast' },
+    { id: 16, name: 'Quinoa', image: '🌾', category: 'Grains' },
+    { id: 17, name: 'Soda', image: '🥤', category: 'Beverages' },
+    { id: 18, name: 'Crackers', image: '🍘', category: 'Snacks' },
+    { id: 19, name: 'Ice Cream', image: '🍦', category: 'Frozen' },
+    { id: 20, name: 'Pasta Sauce', image: '🍝', category: 'Condiments' },
+  ];
+
+  const slideImages = [
+    { emoji: '🥗', text: 'Fresh & Healthy' },
+    { emoji: '🔬', text: 'Science-Backed' },
+    { emoji: '🎯', text: 'Smart Choices' },
+  ];
+
+  const analyzeProduct = async (productName) => {
+    setAnalysisData({
+      product_name: productName,
+      nova_score: 4,
+      nutriscore: 18,
+      additives: 5,
+      additive_density: 33,
+      sugars: 10.6,
+      fiber: 2.0,
+      carbs: 45.2,
+      fat: 8.3,
+      ai_summary: "Contains 5 additives and enriched flour, indicating significant industrial processing.",
+      recommendations: [
+        { name: 'Yolk-free Broad Noodles', nova: 1, image: '🍜' },
+        { name: 'Enriched Penne', nova: 1, image: '🍝' },
+        { name: 'Whole Wheat Pasta', nova: 1, image: '🍝' },
+      ]
+    });
+  };
+
+  const getNovaColor = (score) => {
+    const colors = {
+      1: 'bg-green-500',
+      2: 'bg-yellow-400',
+      3: 'bg-orange-500',
+      4: 'bg-red-500',
+    };
+    return colors[score] || 'bg-gray-400';
+  };
+
+  const getNovaLabel = (score) => {
+    const labels = {
+      1: 'Minimally Processed',
+      2: 'Processed',
+      3: 'Ultra-Processed',
+      4: 'Highly Ultra-Processed',
+    };
+    return labels[score] || 'Unknown';
+  };
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slideImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  if (view === 'landing') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex">
+        <div className="w-1/2 flex flex-col justify-center items-start px-20">
+          <div className="space-y-6">
+            <h1 className="text-7xl font-bold text-gray-800 tracking-tight">
+              NutriLens
+            </h1>
+            <p className="text-2xl text-gray-600 font-light">
+              Eat Smart, Live Better
+            </p>
+            <button
+              onClick={() => setView('selection')}
+              className="mt-8 px-8 py-4 bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              Analyze Product →
+            </button>
+          </div>
+        </div>
+        <div className="w-1/2 flex items-center justify-center bg-white">
+          <div className="text-center transition-all duration-500">
+            <div className="text-9xl mb-6 animate-pulse">
+              {slideImages[currentSlide].emoji}
+            </div>
+            <p className="text-3xl font-semibold text-gray-700">
+              {slideImages[currentSlide].text}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (view === 'selection') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex">
+        <div className="w-1/2 flex flex-col justify-center items-start px-20">
+          <div className="space-y-6">
+            <h1 className="text-7xl font-bold text-gray-800 tracking-tight">
+              NutriLens
+            </h1>
+            <p className="text-2xl text-gray-600 font-light">
+              Eat Smart, Live Better
+            </p>
+          </div>
+        </div>
+        <div className="w-1/2 flex items-center justify-center p-8">
+          <div className="bg-white rounded-3xl shadow-2xl p-8 max-h-[90vh] overflow-y-auto w-full">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-bold text-gray-800">Select a Product</h2>
+              <button
+                onClick={() => setView('landing')}
+                className="text-gray-500 hover:text-gray-700 text-2xl"
+              >
+                ×
+              </button>
+            </div>
+            <div className="grid grid-cols-3 gap-4">
+              {demoProducts.map((product) => (
+                <button
+                  key={product.id}
+                  onClick={() => {
+                    setSelectedProduct(product);
+                    analyzeProduct(product.name);
+                    setView('results');
+                  }}
+                  className="bg-gray-50 hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-400 rounded-xl p-4 transition-all transform hover:scale-105"
+                >
+                  <div className="text-5xl mb-2">{product.image}</div>
+                  <p className="text-sm font-medium text-gray-700 line-clamp-2">
+                    {product.name}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">{product.category}</p>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (view === 'results' && analysisData) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex">
+        <div className="w-1/2 flex flex-col justify-center items-start px-20">
+          <div className="space-y-6">
+            <h1 className="text-7xl font-bold text-gray-800 tracking-tight">
+              NutriLens
+            </h1>
+            <p className="text-2xl text-gray-600 font-light">
+              Eat Smart, Live Better
+            </p>
+            <button
+              onClick={() => setView('selection')}
+              className="mt-8 px-6 py-3 bg-gray-600 text-white rounded-full text-base font-semibold hover:bg-gray-700 transition-all"
+            >
+              ← Choose Another
+            </button>
+          </div>
+        </div>
+        <div className="w-1/2 p-8 overflow-y-auto">
+          <div className="bg-white rounded-3xl shadow-2xl p-8 space-y-6">
+            <div className="text-center border-b pb-6">
+              <div className="text-6xl mb-4">{selectedProduct.image}</div>
+              <h2 className="text-2xl font-bold text-gray-800">{analysisData.product_name}</h2>
+            </div>
+            <div className={`${getNovaColor(analysisData.nova_score)} text-white rounded-2xl p-6 text-center`}>
+              <div className="text-5xl font-bold mb-2">NOVA {analysisData.nova_score}</div>
+              <div className="text-lg font-medium">{getNovaLabel(analysisData.nova_score)}</div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4">
+                <div className="flex items-center justify-between">
+                  <AlertCircle className="text-red-500" size={24} />
+                  <span className="text-2xl font-bold text-red-600">{analysisData.additives}</span>
+                </div>
+                <p className="text-sm text-gray-600 mt-2">Additives</p>
+              </div>
+              <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4">
+                <div className="flex items-center justify-between">
+                  <Zap className="text-yellow-600" size={24} />
+                  <span className="text-2xl font-bold text-yellow-600">{analysisData.sugars}g</span>
+                </div>
+                <p className="text-sm text-gray-600 mt-2">Sugars / 100g</p>
+              </div>
+              <div className="bg-green-50 border-2 border-green-200 rounded-xl p-4">
+                <div className="flex items-center justify-between">
+                  <Activity className="text-green-600" size={24} />
+                  <span className="text-2xl font-bold text-green-600">{analysisData.fiber}g</span>
+                </div>
+                <p className="text-sm text-gray-600 mt-2">Fiber / 100g</p>
+              </div>
+              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
+                <div className="flex items-center justify-between">
+                  <Heart className="text-blue-600" size={24} />
+                  <span className="text-2xl font-bold text-blue-600">{analysisData.carbs}g</span>
+                </div>
+                <p className="text-sm text-gray-600 mt-2">Carbs / 100g</p>
+              </div>
+            </div>
+            <div className="bg-purple-50 border-2 border-purple-200 rounded-xl p-4">
+              <p className="text-sm text-gray-700 italic">
+                💡 {analysisData.ai_summary}
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                <TrendingDown className="mr-2 text-green-600" />
+                Less Processed Alternatives
+              </h3>
+              <div className="space-y-3">
+                {analysisData.recommendations.map((rec, idx) => (
+                  <div key={idx} className="bg-green-50 border-2 border-green-200 rounded-xl p-4 flex items-center justify-between hover:bg-green-100 transition-all">
+                    <div className="flex items-center space-x-4">
+                      <div className="text-3xl">{rec.image}</div>
+                      <div>
+                        <p className="font-semibold text-gray-800">{rec.name}</p>
+                        <p className="text-sm text-green-600">NOVA {rec.nova}</p>
+                      </div>
+                    </div>
+                    <div className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      Better
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+};
+
+export default NutriLens;
