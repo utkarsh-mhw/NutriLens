@@ -136,7 +136,8 @@ def recommend_alternates(product_name, product_nova, product_cluster, user_categ
         healthier_candidates = healthier_candidates.sort_values('nova_group')
         return list(zip(
             healthier_candidates['product_name'],
-            healthier_candidates['nova_group'].astype(int)
+            healthier_candidates['nova_group'].astype(int),
+            healthier_candidates['code']
         ))[:topN]
     
     # If product is already NOVA 1
@@ -145,7 +146,8 @@ def recommend_alternates(product_name, product_nova, product_cluster, user_categ
         if not same_nova_candidates.empty:
             recs = list(zip(
                 same_nova_candidates['product_name'],
-                same_nova_candidates['nova_group'].astype(int)
+                same_nova_candidates['nova_group'].astype(int),
+                healthier_candidates['code']
             ))[:topN]
             return [("You have a very least-processed food but here are alternates:", None)] + recs
     
@@ -154,7 +156,8 @@ def recommend_alternates(product_name, product_nova, product_cluster, user_categ
     if not same_nova_candidates.empty:
         recs = list(zip(
             same_nova_candidates['product_name'],
-            same_nova_candidates['nova_group'].astype(int)
+            same_nova_candidates['nova_group'].astype(int),
+            healthier_candidates['code']
         ))[:topN]
         return [("Couldn't find less processed options. Try these with same NOVA:", None)] + recs
     

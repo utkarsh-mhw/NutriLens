@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Camera, Zap, TrendingDown, Activity, Heart, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Camera, Zap, TrendingDown, Activity, Heart, AlertCircle, Github } from 'lucide-react';
+
 import axios from 'axios';
 
 const NutriLens = () => {
@@ -8,8 +9,11 @@ const NutriLens = () => {
   const [analysisData, setAnalysisData] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [recImages, setRecImages] = useState({});
+  const GITHUB_REPO_URL = 'https://github.com/utkarsh-mhw/NutriLens';
 
   const demoProducts = [
+    { id: 850027959184, name: 'Mint Chocolate Cookie', code: 850027959184, category: 'Snacks' },
     { id: 70253469008, name: 'Enriched egg noodle product, medium egg noodles', code: 70253469008, category: 'Pasta' },
     { id: 77908000197, name: 'No 19 Rigatoni with Spring Water', code: 77908000197, category: 'Pasta' },
     { id: 11110128478, name: 'Spaghetti', code: 11110128478, category: 'Pasta' },
@@ -19,7 +23,6 @@ const NutriLens = () => {
     { id: 29737014012, name: 'Tortellini rosa', code: 29737014012, category: 'Pasta' },
     { id: 859924003020, name: "Leo's, ravioli, spinach & cheese", code: 859924003020, category: 'Pasta' },
     { id: 72036014689, name: 'Cheese ravioli', code: 72036014689, category: 'Pasta' },
-    { id: 850027959184, name: 'Mint Chocolate Cookie', code: 850027959184, category: 'Snacks' },
     { id: 779566111719, name: 'Mini ravioli, 3 cheese', code: 779566111719, category: 'Pasta' },
     { id: 8006013990903, name: 'Eggplant parmesan ravioli', code: 8006013990903, category: 'Pasta' },
     { id: 856646004502, name: 'The original cold-pressed lemonade fruit juice drink blend', code: 856646004502, category: 'Beverages' },
@@ -32,19 +35,56 @@ const NutriLens = () => {
   ];
 
   const slideImages = [
-    { emoji: '🥗', text: 'Fresh & Healthy' },
-    { emoji: '🔬', text: 'Science-Backed' },
-    { emoji: '🎯', text: 'Smart Choices' },
-  ];
+  { 
+    image: '/demo_snapshots/confused_person.jpg', 
+    text: 'Shopping healthy shouldn\'t be overwhelming',
+    emoji: '🛒' // fallback
+  },
+  { 
+    image: '/demo_snapshots/complex_ing.jpg', 
+    text: 'Ingredient labels can be confusing',
+    emoji: '🔬' // fallback
+  },
+  { 
+    image: '/demo_snapshots/eat_clean.jpg', 
+    text: 'Know exactly how processed your food is',
+    emoji: '🥗' // fallback
+  },
+];
 
-  // Helper function to get image path
   const getProductImage = (code) => {
     return `/demo_snapshots/${code}.jpg`;
+  };
+
+  const getRecommendationImage = async (productCode) => {
+    try {
+      const response = await fetch(`https://world.openfoodfacts.org/api/v0/product/${productCode}.json`);
+      const data = await response.json();
+      
+      if (data.status === 0) {
+        return null; // Product not found
+      }
+      
+      const imageUrl = 
+        data.product?.image_small_url ||
+        data.product?.image_thumb_url ||
+        data.product?.image_url ||
+        data.product?.image_front_small_url ||
+        data.product?.image_front_thumb_url ||
+        data.product?.image_front_url ||
+        null;
+      
+      return imageUrl;
+    } catch (error) {
+      console.error(`Failed to fetch image for ${productCode}:`, error);
+      return null;
+    }
   };
 
   const analyzeProduct = async (productName) => {
     setLoading(true);
     setAnalysisData(null);
+    setRecImages({}); // Reset recommendation images
 
     try {
       const response = await axios.post('http://localhost:5002/api/analyze', {
@@ -78,12 +118,21 @@ const NutriLens = () => {
           recommendations: data.recommendations.map((rec) => ({
             name: rec[0],
             nova: rec[1],
-            image: '🍽️',
+            code: rec[2], // Product code for fetching image
           })),
         };
 
         setAnalysisData(formattedData);
         setView('results');
+
+        // Fetch recommendation images in parallel
+        formattedData.recommendations.forEach(async (rec) => {
+          const imageUrl = await getRecommendationImage(rec.code);
+          setRecImages(prev => ({
+            ...prev,
+            [rec.code]: imageUrl
+          }));
+        });
       } else {
         alert(data.error || 'Error analyzing product, try again with a new product!');
       }
@@ -107,10 +156,10 @@ const NutriLens = () => {
 
   const getNovaLabel = (score) => {
     const labels = {
-      1: 'Minimally Processed',
-      2: 'Processed',
-      3: 'Ultra-Processed',
-      4: 'Highly Ultra-Processed',
+      1: 'Unprocessed',
+      2: 'Minimally Processed',
+      3: 'Highly Processed',
+      4: 'Very Highly Processed',
     };
     return labels[score] || 'Unknown';
   };
@@ -121,6 +170,18 @@ const NutriLens = () => {
     }, 3000);
     return () => clearInterval(timer);
   }, []);
+  const GitHubButton = () => (
+    <a
+      href={GITHUB_REPO_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed top-6 left-6 flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded-full shadow-lg transition-all transform hover:scale-105 z-50"
+    >
+      <Github size={20} />
+      <span className="font-medium">View Code</span>
+    </a>
+  );
+
 
   if (loading) {
     return (
@@ -135,7 +196,11 @@ const NutriLens = () => {
 
   if (view === 'landing') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex relative">
+        
+        {/* View Code Button */}
+        <GitHubButton />
+
         <div className="w-1/2 flex flex-col justify-center items-start px-20">
           <div className="space-y-6">
             <h1 className="text-7xl font-bold text-gray-800 tracking-tight">
@@ -150,12 +215,30 @@ const NutriLens = () => {
             >
               Analyze Product →
             </button>
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg max-w-xl">
+              <p className="text-sm text-gray-700">
+                <strong>Academic Project:</strong> This tool uses data from Open Food Facts for educational purposes only.
+                Not intended as medical or nutritional advice. Please consult healthcare professionals for dietary guidance.
+              </p>
+            </div>
           </div>
         </div>
+
         <div className="w-1/2 flex items-center justify-center bg-white">
-          <div className="text-center transition-all duration-500">
-            <div className="text-9xl mb-6 animate-pulse">
-              {slideImages[currentSlide].emoji}
+          <div className="text-center transition-all duration-500 px-12">
+            <div className="relative w-full h-96 mb-6 rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src={slideImages[currentSlide].image}
+                alt={slideImages[currentSlide].text}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div className="absolute inset-0 hidden items-center justify-center text-9xl animate-pulse">
+                {slideImages[currentSlide].emoji}
+              </div>
             </div>
             <p className="text-3xl font-semibold text-gray-700">
               {slideImages[currentSlide].text}
@@ -264,7 +347,7 @@ const NutriLens = () => {
               <h2 className="text-2xl font-bold text-gray-800">{analysisData.product_name}</h2>
             </div>
             <div className={`${getNovaColor(analysisData.nova_score)} text-white rounded-2xl p-6 text-center`}>
-              <div className="text-5xl font-bold mb-2">NOVA {analysisData.nova_score}</div>
+              <div className="text-5xl font-bold mb-2">NOVA Score: {analysisData.nova_score}</div>
               <div className="text-lg font-medium">{getNovaLabel(analysisData.nova_score)}</div>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -273,18 +356,19 @@ const NutriLens = () => {
                   <AlertCircle className="text-red-500" size={24} />
                   <span className="text-2xl font-bold text-red-600">{analysisData.additives}</span>
                 </div>
-                <p className="text-sm text-gray-600 mt-2">Additives</p>
+                <p className="text-sm text-gray-600 mt-2">Number of Additives</p>
               </div>
+              
               <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4">
                 <div className="flex items-center justify-between">
-                  <Zap className="text-yellow-600" size={24} />
+                  <Activity className="text-yellow-600" size={24} />
                   <span className="text-2xl font-bold text-yellow-600">{analysisData.sugars}g</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-2">Sugars / 100g</p>
               </div>
               <div className="bg-green-50 border-2 border-green-200 rounded-xl p-4">
                 <div className="flex items-center justify-between">
-                  <Activity className="text-green-600" size={24} />
+                  <Heart className="text-green-600" size={24} />
                   <span className="text-2xl font-bold text-green-600">{analysisData.fiber}g</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-2">Fiber / 100g</p>
@@ -311,10 +395,22 @@ const NutriLens = () => {
                 {analysisData.recommendations.map((rec, idx) => (
                   <div key={idx} className="bg-green-50 border-2 border-green-200 rounded-xl p-4 flex items-center justify-between hover:bg-green-100 transition-all">
                     <div className="flex items-center space-x-4">
-                      <div className="text-3xl">{rec.image}</div>
+                      <div className="relative w-16 h-16 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                        {recImages[rec.code] ? (
+                          <img 
+                            src={recImages[rec.code]} 
+                            alt={rec.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-2xl">
+                            {recImages[rec.code] === null ? '🍽️' : '⏳'}
+                          </div>
+                        )}
+                      </div>
                       <div>
                         <p className="font-semibold text-gray-800">{rec.name}</p>
-                        <p className="text-sm text-green-600">NOVA {rec.nova}</p>
+                        <p className="text-sm text-green-600">NOVA Score: {rec.nova}</p>
                       </div>
                     </div>
                     <div className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
