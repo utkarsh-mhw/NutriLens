@@ -10,26 +10,25 @@ const NutriLens = () => {
   const [loading, setLoading] = useState(false);
 
   const demoProducts = [
-    { id: 1, name: 'Tortellini Rosa', image: '🍝', category: 'Pasta' },
-    { id: 2, name: 'Diet cola soda', image: '🥤', category: 'Beverages' },
-    { id: 3, name: 'Mint Chocolate Cookie', image: '🍫', category: 'Snacks' },
-    { id: 4, name: 'Whole Wheat Bread', image: '🍞', category: 'Bakery' },
-    { id: 5, name: 'Greek Yogurt', image: '🥛', category: 'Dairy' },
-    { id: 6, name: 'Potato Chips', image: '🥔', category: 'Snacks' },
-    { id: 7, name: 'Orange Juice', image: '🧃', category: 'Beverages' },
-    { id: 8, name: 'Protein Bar', image: '🍫', category: 'Snacks' },
-    { id: 9, name: 'Brown Rice', image: '🍚', category: 'Grains' },
-    { id: 10, name: 'Instant Noodles', image: '🍜', category: 'Pasta' },
-    { id: 11, name: 'Almond Milk', image: '🥛', category: 'Dairy' },
-    { id: 12, name: 'Trail Mix', image: '🥜', category: 'Snacks' },
-    { id: 13, name: 'Frozen Pizza', image: '🍕', category: 'Frozen' },
-    { id: 14, name: 'Energy Drink', image: '⚡', category: 'Beverages' },
-    { id: 15, name: 'Cereal', image: '🥣', category: 'Breakfast' },
-    { id: 16, name: 'Quinoa', image: '🌾', category: 'Grains' },
-    { id: 17, name: 'Soda', image: '🥤', category: 'Beverages' },
-    { id: 18, name: 'Crackers', image: '🍘', category: 'Snacks' },
-    { id: 19, name: 'Ice Cream', image: '🍦', category: 'Frozen' },
-    { id: 20, name: 'Pasta Sauce', image: '🍝', category: 'Condiments' },
+    { id: 70253469008, name: 'Enriched egg noodle product, medium egg noodles', code: 70253469008, category: 'Pasta' },
+    { id: 77908000197, name: 'No 19 Rigatoni with Spring Water', code: 77908000197, category: 'Pasta' },
+    { id: 11110128478, name: 'Spaghetti', code: 11110128478, category: 'Pasta' },
+    { id: 21333225007, name: 'Chunk Light Tuna', code: 21333225007, category: 'Canned' },
+    { id: 23547842018, name: 'Organic Traditional Whole Wheat Lomein', code: 23547842018, category: 'Pasta' },
+    { id: 70038648604, name: 'Cream of chicken soup', code: 70038648604, category: 'Soup' },
+    { id: 29737014012, name: 'Tortellini rosa', code: 29737014012, category: 'Pasta' },
+    { id: 859924003020, name: "Leo's, ravioli, spinach & cheese", code: 859924003020, category: 'Pasta' },
+    { id: 72036014689, name: 'Cheese ravioli', code: 72036014689, category: 'Pasta' },
+    { id: 850027959184, name: 'Mint Chocolate Cookie', code: 850027959184, category: 'Snacks' },
+    { id: 779566111719, name: 'Mini ravioli, 3 cheese', code: 779566111719, category: 'Pasta' },
+    { id: 8006013990903, name: 'Eggplant parmesan ravioli', code: 8006013990903, category: 'Pasta' },
+    { id: 856646004502, name: 'The original cold-pressed lemonade fruit juice drink blend', code: 856646004502, category: 'Beverages' },
+    { id: 85239184417, name: 'Chunky Chicken Noodle Soup', code: 85239184417, category: 'Soup' },
+    { id: 11110491985, name: 'Diet cola soda', code: 11110491985, category: 'Beverages' },
+    { id: 86854036075, name: 'Diet Soda', code: 86854036075, category: 'Beverages' },
+    { id: 896743002025, name: 'Recovery drink pomegranate punch', code: 896743002025, category: 'Beverages' },
+    { id: 72554001628, name: 'Frozen dairy dessert cone', code: 72554001628, category: 'Frozen' },
+    { id: 41789002373, name: 'Shrimp ramen noodle soup', code: 41789002373, category: 'Soup' },
   ];
 
   const slideImages = [
@@ -38,115 +37,63 @@ const NutriLens = () => {
     { emoji: '🎯', text: 'Smart Choices' },
   ];
 
-  // const analyzeProduct = async (productName) => {
-  //   setLoading(true);       // show loading
-  //   setAnalysisData(null);  // reset previous data
+  // Helper function to get image path
+  const getProductImage = (code) => {
+    return `/demo_snapshots/${code}.jpg`;
+  };
 
-  //   try {
-  //     const response = await axios.post('http://localhost:5002/api/analyze', {
-  //       product_name: productName
-  //     });
-  //     let data = response.data;
-    
-  //     // If it's a string, fix NaN and then parse
-  //     if (typeof data === 'string') {
-  //       data = data.replace(/:\s*NaN/g, ': null'); // Replace NaN with null
-  //       data = JSON.parse(data);
-  //     }
-      
-  //     console.log("Getting response:", data);
-  //     console.log("Success:", data.success);
-  //     console.log("NOVA score:", data.nova_score);
-
-  //     if (response.data.success) {
-  //       const data = response.data;
-
-  //       const formattedData = {
-  //         product_name: data.product_name,
-  //         nova_score: data.nova_score,
-  //         additives: data.product_macros.additives_n || 0,
-  //         additive_density: data.product_macros.additive_density || 0,
-  //         sugars: data.product_macros.sugars_100g || 0,
-  //         fiber: data.product_macros.fiber_100g || 0,
-  //         carbs: data.product_macros.carbohydrates_100g || 0,
-  //         fat: (data.product_macros.saturated_fat_100g || 0) +
-  //             (data.product_macros.monounsaturated_fat_100g || 0) +
-  //             (data.product_macros.polyunsaturated_fat_100g || 0),
-  //         ai_summary: data.explain_nova,
-  //         recommendations: data.recommendations.map((rec) => ({
-  //           name: rec[0],
-  //           nova: rec[1],
-  //           image: '🍽️',  // default, can customize later
-  //         })),
-  //       };
-
-  //     setAnalysisData(formattedData);
-  //     setView('results');   // show results once data arrives
-  //   } else {
-  //     alert(response.data.error || 'Error analyzing product, try again with a new product!');
-  //   }
-  // } catch (err) {
-  //   console.error(err);
-  //   alert('Failed to fetch data from backend');
-  // } finally {
-  //   setLoading(false);
-  // }
-  // };
   const analyzeProduct = async (productName) => {
-  setLoading(true);
-  setAnalysisData(null);
+    setLoading(true);
+    setAnalysisData(null);
 
-  try {
-    const response = await axios.post('http://localhost:5002/api/analyze', {
-      product_name: productName
-    });
-    
-    let data = response.data;
-    
-    // If it's a string, fix NaN and then parse
-    if (typeof data === 'string') {
-      data = data.replace(/:\s*NaN/g, ': null');
-      data = JSON.parse(data);
+    try {
+      const response = await axios.post('http://localhost:5002/api/analyze', {
+        product_name: productName
+      });
+      
+      let data = response.data;
+      
+      if (typeof data === 'string') {
+        data = data.replace(/:\s*NaN/g, ': null');
+        data = JSON.parse(data);
+      }
+      
+      console.log("Getting response:", data);
+      console.log("Success:", data.success);
+      console.log("NOVA score:", data.nova_score);
+
+      if (data.success) {
+        const formattedData = {
+          product_name: data.product_name,
+          nova_score: data.nova_score,
+          additives: data.product_macros.additives_n || 0,
+          additive_density: data.product_macros.additive_density || 0,
+          sugars: data.product_macros.sugars_100g || 0,
+          fiber: data.product_macros.fiber_100g || 0,
+          carbs: data.product_macros.carbohydrates_100g || 0,
+          fat: (data.product_macros['saturated-fat_100g'] || 0) +
+              (data.product_macros['monounsaturated-fat_100g'] || 0) +
+              (data.product_macros['polyunsaturated-fat_100g'] || 0),
+          ai_summary: data.explain_nova,
+          recommendations: data.recommendations.map((rec) => ({
+            name: rec[0],
+            nova: rec[1],
+            image: '🍽️',
+          })),
+        };
+
+        setAnalysisData(formattedData);
+        setView('results');
+      } else {
+        alert(data.error || 'Error analyzing product, try again with a new product!');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to fetch data from backend');
+    } finally {
+      setLoading(false);
     }
-    
-    console.log("Getting response:", data);
-    console.log("Success:", data.success);
-    console.log("NOVA score:", data.nova_score);
-
-    // ✅ Check the parsed 'data' variable, not response.data
-    if (data.success) {
-      // ✅ Don't redefine data here - use the one you already have!
-      const formattedData = {
-        product_name: data.product_name,
-        nova_score: data.nova_score,
-        additives: data.product_macros.additives_n || 0,
-        additive_density: data.product_macros.additive_density || 0,
-        sugars: data.product_macros.sugars_100g || 0,
-        fiber: data.product_macros.fiber_100g || 0,
-        carbs: data.product_macros.carbohydrates_100g || 0,
-        fat: (data.product_macros['saturated-fat_100g'] || 0) +
-            (data.product_macros['monounsaturated-fat_100g'] || 0) +
-            (data.product_macros['polyunsaturated-fat_100g'] || 0),
-        ai_summary: data.explain_nova,
-        recommendations: data.recommendations.map((rec) => ({
-          name: rec[0],
-          nova: rec[1],
-          image: '🍽️',
-        })),
-      };
-
-      setAnalysisData(formattedData);
-      setView('results');
-    } else {
-      alert(data.error || 'Error analyzing product, try again with a new product!');
-    }
-  } catch (err) {
-    console.error(err);
-    alert('Failed to fetch data from backend');
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   const getNovaColor = (score) => {
     const colors = {
@@ -176,15 +123,15 @@ const NutriLens = () => {
   }, []);
 
   if (loading) {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <div className="text-6xl mb-4 animate-spin">⏳</div>
-        <p className="text-xl text-gray-700">Analyzing product, please wait...</p>
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="text-center">
+          <div className="text-6xl mb-4 animate-spin">⏳</div>
+          <p className="text-xl text-gray-700">Analyzing product, please wait...</p>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   if (view === 'landing') {
     return (
@@ -245,30 +192,28 @@ const NutriLens = () => {
             </div>
             <div className="grid grid-cols-3 gap-4">
               {demoProducts.map((product) => (
-                // <button
-                //   key={product.id}
-                //   onClick={() => {
-                //     setSelectedProduct(product);
-                //     analyzeProduct(product.name);
-                //     setView('results');
-                //   }}
-                //   className="bg-gray-50 hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-400 rounded-xl p-4 transition-all transform hover:scale-105"
-                // >
-                //   <div className="text-5xl mb-2">{product.image}</div>
-                //   <p className="text-sm font-medium text-gray-700 line-clamp-2">
-                //     {product.name}
-                //   </p>
-                //   <p className="text-xs text-gray-500 mt-1">{product.category}</p>
-                // </button>
                 <button
                   key={product.id}
                   onClick={() => {
                     setSelectedProduct(product);
                     analyzeProduct(product.name);
                   }}
-                  className="bg-gray-50 hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-400 rounded-xl p-4 transition-all transform hover:scale-105"
+                  className="bg-gray-50 hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-400 rounded-xl p-4 transition-all transform hover:scale-105 overflow-hidden"
                 >
-                  <div className="text-5xl mb-2">{product.image}</div>
+                  <div className="relative w-full h-32 mb-2 bg-gray-100 rounded-lg overflow-hidden">
+                    <img 
+                      src={getProductImage(product.code)} 
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextElementSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className="absolute inset-0 hidden items-center justify-center text-5xl">
+                      🍽️
+                    </div>
+                  </div>
                   <p className="text-sm font-medium text-gray-700 line-clamp-2">{product.name}</p>
                   <p className="text-xs text-gray-500 mt-1">{product.category}</p>
                 </button>
@@ -302,7 +247,20 @@ const NutriLens = () => {
         <div className="w-1/2 p-8 overflow-y-auto">
           <div className="bg-white rounded-3xl shadow-2xl p-8 space-y-6">
             <div className="text-center border-b pb-6">
-              <div className="text-6xl mb-4">{selectedProduct.image}</div>
+              <div className="relative w-40 h-40 mx-auto mb-4 bg-gray-100 rounded-xl overflow-hidden">
+                <img 
+                  src={getProductImage(selectedProduct.code)} 
+                  alt={selectedProduct.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextElementSibling.style.display = 'flex';
+                  }}
+                />
+                <div className="absolute inset-0 hidden items-center justify-center text-6xl">
+                  🍽️
+                </div>
+              </div>
               <h2 className="text-2xl font-bold text-gray-800">{analysisData.product_name}</h2>
             </div>
             <div className={`${getNovaColor(analysisData.nova_score)} text-white rounded-2xl p-6 text-center`}>
