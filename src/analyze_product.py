@@ -184,13 +184,14 @@ def analyze_product(product_name):
         topN=3,
         isSameCluster=True
     )
-    
+    product_nutr_info = lookup_product.loc[:, ~lookup_product.columns.to_series().apply(lambda x: str(x).isnumeric())]
     result = {
         'success': True,
         'product_name': product_name,
         'nova_score': nova_score,
         'cluster_id': cluster_id,
         'recommendations': recommendations if recommendations else [],
+        'product_macros': product_nutr_info.to_dict(),
         'processing_time': f"{time.time() - start_time:.3f}s"
     }
     
