@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from src.analyze_product import *
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/analyze', methods=['POST'])
 def analyze():

@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Camera, Zap, TrendingDown, Activity, Heart, AlertCircle } from 'lucide-react';
+import axios from 'axios';
 
 const NutriLens = () => {
   const [view, setView] = useState('landing');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [analysisData, setAnalysisData] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const demoProducts = [
     { id: 1, name: 'Tortellini Rosa', image: '🍝', category: 'Pasta' },
-    { id: 2, name: 'Coca Cola', image: '🥤', category: 'Beverages' },
-    { id: 3, name: 'Granola Bar', image: '🍫', category: 'Snacks' },
+    { id: 2, name: 'Diet cola soda', image: '🥤', category: 'Beverages' },
+    { id: 3, name: 'Mint Chocolate Cookie', image: '🍫', category: 'Snacks' },
     { id: 4, name: 'Whole Wheat Bread', image: '🍞', category: 'Bakery' },
     { id: 5, name: 'Greek Yogurt', image: '🥛', category: 'Dairy' },
     { id: 6, name: 'Potato Chips', image: '🥔', category: 'Snacks' },
@@ -36,25 +38,115 @@ const NutriLens = () => {
     { emoji: '🎯', text: 'Smart Choices' },
   ];
 
+  // const analyzeProduct = async (productName) => {
+  //   setLoading(true);       // show loading
+  //   setAnalysisData(null);  // reset previous data
+
+  //   try {
+  //     const response = await axios.post('http://localhost:5002/api/analyze', {
+  //       product_name: productName
+  //     });
+  //     let data = response.data;
+    
+  //     // If it's a string, fix NaN and then parse
+  //     if (typeof data === 'string') {
+  //       data = data.replace(/:\s*NaN/g, ': null'); // Replace NaN with null
+  //       data = JSON.parse(data);
+  //     }
+      
+  //     console.log("Getting response:", data);
+  //     console.log("Success:", data.success);
+  //     console.log("NOVA score:", data.nova_score);
+
+  //     if (response.data.success) {
+  //       const data = response.data;
+
+  //       const formattedData = {
+  //         product_name: data.product_name,
+  //         nova_score: data.nova_score,
+  //         additives: data.product_macros.additives_n || 0,
+  //         additive_density: data.product_macros.additive_density || 0,
+  //         sugars: data.product_macros.sugars_100g || 0,
+  //         fiber: data.product_macros.fiber_100g || 0,
+  //         carbs: data.product_macros.carbohydrates_100g || 0,
+  //         fat: (data.product_macros.saturated_fat_100g || 0) +
+  //             (data.product_macros.monounsaturated_fat_100g || 0) +
+  //             (data.product_macros.polyunsaturated_fat_100g || 0),
+  //         ai_summary: data.explain_nova,
+  //         recommendations: data.recommendations.map((rec) => ({
+  //           name: rec[0],
+  //           nova: rec[1],
+  //           image: '🍽️',  // default, can customize later
+  //         })),
+  //       };
+
+  //     setAnalysisData(formattedData);
+  //     setView('results');   // show results once data arrives
+  //   } else {
+  //     alert(response.data.error || 'Error analyzing product, try again with a new product!');
+  //   }
+  // } catch (err) {
+  //   console.error(err);
+  //   alert('Failed to fetch data from backend');
+  // } finally {
+  //   setLoading(false);
+  // }
+  // };
   const analyzeProduct = async (productName) => {
-    setAnalysisData({
-      product_name: productName,
-      nova_score: 4,
-      nutriscore: 18,
-      additives: 5,
-      additive_density: 33,
-      sugars: 10.6,
-      fiber: 2.0,
-      carbs: 45.2,
-      fat: 8.3,
-      ai_summary: "Contains 5 additives and enriched flour, indicating significant industrial processing.",
-      recommendations: [
-        { name: 'Yolk-free Broad Noodles', nova: 1, image: '🍜' },
-        { name: 'Enriched Penne', nova: 1, image: '🍝' },
-        { name: 'Whole Wheat Pasta', nova: 1, image: '🍝' },
-      ]
+  setLoading(true);
+  setAnalysisData(null);
+
+  try {
+    const response = await axios.post('http://localhost:5002/api/analyze', {
+      product_name: productName
     });
-  };
+    
+    let data = response.data;
+    
+    // If it's a string, fix NaN and then parse
+    if (typeof data === 'string') {
+      data = data.replace(/:\s*NaN/g, ': null');
+      data = JSON.parse(data);
+    }
+    
+    console.log("Getting response:", data);
+    console.log("Success:", data.success);
+    console.log("NOVA score:", data.nova_score);
+
+    // ✅ Check the parsed 'data' variable, not response.data
+    if (data.success) {
+      // ✅ Don't redefine data here - use the one you already have!
+      const formattedData = {
+        product_name: data.product_name,
+        nova_score: data.nova_score,
+        additives: data.product_macros.additives_n || 0,
+        additive_density: data.product_macros.additive_density || 0,
+        sugars: data.product_macros.sugars_100g || 0,
+        fiber: data.product_macros.fiber_100g || 0,
+        carbs: data.product_macros.carbohydrates_100g || 0,
+        fat: (data.product_macros['saturated-fat_100g'] || 0) +
+            (data.product_macros['monounsaturated-fat_100g'] || 0) +
+            (data.product_macros['polyunsaturated-fat_100g'] || 0),
+        ai_summary: data.explain_nova,
+        recommendations: data.recommendations.map((rec) => ({
+          name: rec[0],
+          nova: rec[1],
+          image: '🍽️',
+        })),
+      };
+
+      setAnalysisData(formattedData);
+      setView('results');
+    } else {
+      alert(data.error || 'Error analyzing product, try again with a new product!');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Failed to fetch data from backend');
+  } finally {
+    setLoading(false);
+  }
+};
 
   const getNovaColor = (score) => {
     const colors = {
@@ -82,6 +174,17 @@ const NutriLens = () => {
     }, 3000);
     return () => clearInterval(timer);
   }, []);
+
+  if (loading) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="text-center">
+        <div className="text-6xl mb-4 animate-spin">⏳</div>
+        <p className="text-xl text-gray-700">Analyzing product, please wait...</p>
+      </div>
+    </div>
+  );
+}
 
   if (view === 'landing') {
     return (
@@ -142,19 +245,31 @@ const NutriLens = () => {
             </div>
             <div className="grid grid-cols-3 gap-4">
               {demoProducts.map((product) => (
+                // <button
+                //   key={product.id}
+                //   onClick={() => {
+                //     setSelectedProduct(product);
+                //     analyzeProduct(product.name);
+                //     setView('results');
+                //   }}
+                //   className="bg-gray-50 hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-400 rounded-xl p-4 transition-all transform hover:scale-105"
+                // >
+                //   <div className="text-5xl mb-2">{product.image}</div>
+                //   <p className="text-sm font-medium text-gray-700 line-clamp-2">
+                //     {product.name}
+                //   </p>
+                //   <p className="text-xs text-gray-500 mt-1">{product.category}</p>
+                // </button>
                 <button
                   key={product.id}
                   onClick={() => {
                     setSelectedProduct(product);
                     analyzeProduct(product.name);
-                    setView('results');
                   }}
                   className="bg-gray-50 hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-400 rounded-xl p-4 transition-all transform hover:scale-105"
                 >
                   <div className="text-5xl mb-2">{product.image}</div>
-                  <p className="text-sm font-medium text-gray-700 line-clamp-2">
-                    {product.name}
-                  </p>
+                  <p className="text-sm font-medium text-gray-700 line-clamp-2">{product.name}</p>
                   <p className="text-xs text-gray-500 mt-1">{product.category}</p>
                 </button>
               ))}
