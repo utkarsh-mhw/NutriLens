@@ -4,6 +4,8 @@ import pandas as pd
 from sklearn.cluster import KMeans
 import umap
 import time
+import requests
+import json
 
 from src.k_means import extract_embeddings
 
@@ -159,6 +161,50 @@ def recommend_alternates(product_name, product_nova, product_cluster, user_categ
     # No recommendations found
     return []
 
+def call_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    
+    payload = {
+        "model": "llama3.2:3b",
+        "prompt": prompt,
+        "stream": False
+    }
+    
+    response = requests.post(url, json=payload)
+    return response.json()['response']
+
+def generate_explanation(product_data):
+    
+    prompt = f"""
+    You are a food nutrition expert.
+
+    Write EXACTLY ONE sentence (maximum 20 words) explaining why this product received its NOVA score.
+    Count words before answering.
+
+    Rules:
+    - Use the term "ultra-processed", "processed", "minimally processed", or "unprocessed".
+    - Mention at least ONE specific ingredient or additive from the ingredient list if NOVA ≥ 3.
+    - Do NOT mention the product name.
+    - Avoid generic phrases like "refined ingredients" unless you give an example.
+
+    Product data:
+    - NOVA score: {product_data['nova_group']}
+    - Additives count: {product_data['additives_n']}
+    - Ingredient list: {product_data['ingredients_text']}
+    - Sugars: {product_data['sugars_100g']}g/100g
+    - Fiber: {product_data['fiber_100g']}g/100g
+
+    NOVA definitions:
+    - NOVA 1: unprocessed
+    - NOVA 2: slightly processed
+    - NOVA 3: processed
+    - NOVA 4: ultra-processed
+
+    Output ONLY the sentence.
+    """
+
+    explanation = call_ollama(prompt)
+    return explanation.strip()
 
 def analyze_product(product_name):
 
@@ -185,13 +231,16 @@ def analyze_product(product_name):
         isSameCluster=True
     )
     product_nutr_info = lookup_product.loc[:, ~lookup_product.columns.to_series().apply(lambda x: str(x).isnumeric())]
+    explanation = generate_explanation(lookup_product.iloc[0])
+
     result = {
         'success': True,
         'product_name': product_name,
         'nova_score': nova_score,
         'cluster_id': cluster_id,
         'recommendations': recommendations if recommendations else [],
-        'product_macros': product_nutr_info.to_dict(),
+        'product_macros': product_nutr_info.iloc[0].to_dict(),
+        'explain_nova': explanation,
         'processing_time': f"{time.time() - start_time:.3f}s"
     }
     
@@ -199,17 +248,6 @@ def analyze_product(product_name):
         result['message'] = "Sorry, we couldn't find any suitable alternates at this time."
     
     return result
-
-
-
-def fetch_user_product_details(product_name):
-    result = analyze_product(product_name)
-    
-    if result['success']:
-        return result['nova_score'], result['recommendations']
-    else:
-        return None, result.get('error', 'Product not found')
-
 
 
 if __name__ == "__main__":
