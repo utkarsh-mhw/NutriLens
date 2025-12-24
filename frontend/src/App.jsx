@@ -100,9 +100,17 @@ const NutriLens = () => {
         // PRODUCTION: Load from JSON file
         // const response = await fetch('./demo_snapshots/precomputed_payloads.json');
         // const response = await fetch(`${import.meta.env.BASE_URL}demo_snapshots/precomputed_payloads.json`);
+        // const response = await fetch('https://nutri-lens-nu.vercel.app/demo_snapshots/precomputed_payloads.json');
+        // const allData = await response.json();
+        // data = allData[productName];
+        console.log('Fetching JSON...');
         const response = await fetch('https://nutri-lens-nu.vercel.app/demo_snapshots/precomputed_payloads.json');
+        console.log('Response status:', response.status);
         const allData = await response.json();
+        console.log('All data keys:', Object.keys(allData));
+        console.log('Looking for product:', productName);
         data = allData[productName];
+        console.log('Found data:', data);
       } else {
         // LOCAL: Use your ML backend
         const response = await axios.post('http://localhost:5002/api/analyze', {
