@@ -1,0 +1,809 @@
+{
+  "Enriched egg noodle product, medium egg noodles": {
+    "cluster_id": 4,
+    "explain_nova": "This product received its low NOVA score due to being minimally processed with only egg as a ingredient.",
+    "nova_score": 1,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.0,
+      "additives_n": 0.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 71.43,
+      "categories_tags": "en:plant-based-foods-and-beverages,en:plant-based-foods,en:cereals-and-potatoes,en:cereals-and-their-products,en:pastas,en:noodles",
+      "code": 70253469008,
+      "fiber_100g": 1.8,
+      "ingredient_count": 7,
+      "ingredients_text": "durum wheat semolina durum wheat flour enrich iron ferrou sulfat b vitamin niacin thiamin mononitr riboflavin folic acid egg",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 1,
+      "nutriscore_score": NaN,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Enriched egg noodle product, medium egg noodles",
+      "saturated-fat_100g": 1.79,
+      "sodium_per_calorie": NaN,
+      "sugar_fiber_ratio": 1.8789473684210525,
+      "sugars_100g": 3.57
+    },
+    "product_name": "Enriched egg noodle product, medium egg noodles",
+    "recommendations": [],
+    "success": true
+  },
+  "No 19 Rigatoni with Spring Water": {
+    "cluster_id": 4,
+    "explain_nova": "This product received a NOVA score of 1, indicating it is an \"unprocessed\" food.",
+    "nova_score": 1,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.1428571428571428,
+      "additives_n": 1.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 70.5882,
+      "categories_tags": "en:plant-based-foods-and-beverages,en:plant-based-foods,en:cereals-and-potatoes,en:cereals-and-their-products,en:pastas,en:rigatoni",
+      "code": 77908000197,
+      "fiber_100g": 2.3529,
+      "ingredient_count": 6,
+      "ingredients_text": "durum wheat semolina water ferrou lactat iron niacin thiamin mononitr riboflavin folic acid",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 1,
+      "nutriscore_score": -1.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "No 19 Rigatoni with Spring Water",
+      "saturated-fat_100g": 0.3529,
+      "sodium_per_calorie": 0.0,
+      "sugar_fiber_ratio": 1.438868278364385,
+      "sugars_100g": 3.5294
+    },
+    "product_name": "No 19 Rigatoni with Spring Water",
+    "recommendations": [],
+    "success": true
+  },
+  "Spaghetti": {
+    "cluster_id": 9,
+    "explain_nova": "This product falls under NOVA 1 as it consists only of unprocessed ingredients with no added additives or preservatives.",
+    "nova_score": 1,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.0,
+      "additives_n": 0.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 75.0,
+      "categories_tags": "en:plant-based-foods-and-beverages,en:plant-based-foods,en:pastas",
+      "code": 11110128478,
+      "fiber_100g": 3.57142857142857,
+      "ingredient_count": 6,
+      "ingredients_text": "durum wheat semolina niacin iron ferrou sulfat thiamin mononitr riboflavin folic acid",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 1,
+      "nutriscore_score": NaN,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Spaghetti",
+      "saturated-fat_100g": 0.0,
+      "sodium_per_calorie": NaN,
+      "sugar_fiber_ratio": 0.9727626459143968,
+      "sugars_100g": 3.57142857142857
+    },
+    "product_name": "Spaghetti",
+    "recommendations": [],
+    "success": true
+  },
+  "Chunk Light Tuna": {
+    "cluster_id": 4,
+    "explain_nova": "This product received a NOVA score of 3 due to its minimally processed ingredients, primarily tuna water.",
+    "nova_score": 3,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.0,
+      "additives_n": 0.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 2.112676056338,
+      "categories_tags": "en:seafood,en:fishes-and-their-products,en:canned-foods,en:fishes,en:fatty-fishes,en:canned-fishes,en:tunas,en:canned-tunas",
+      "code": 21333225007,
+      "fiber_100g": 0.0,
+      "ingredient_count": 5,
+      "ingredients_text": "light tuna water veget broth pea carrot salt",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 3,
+      "nutriscore_score": -4.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Chunk Light Tuna",
+      "saturated-fat_100g": 0.0,
+      "sodium_per_calorie": 0.0019152027473253,
+      "sugar_fiber_ratio": NaN,
+      "sugars_100g": 0.0
+    },
+    "product_name": "Chunk Light Tuna",
+    "recommendations": [
+      [
+        "Chunk light tuna",
+        1,
+        11110890849
+      ],
+      [
+        "Chunk Light Tuna in Spring Water",
+        1,
+        41220769551
+      ],
+      [
+        "Kirkland albacore solid white tuna in water of cans",
+        1,
+        96619626410
+      ]
+    ],
+    "success": true
+  },
+  "Organic Traditional Whole Wheat Lomein": {
+    "cluster_id": 15,
+    "explain_nova": "The product received a NOVA score of 3 due to its presence of whole wheat flour and sea salt.",
+    "nova_score": 3,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.0,
+      "additives_n": 0.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 68.421052631579,
+      "categories_tags": "en:plant-based-foods-and-beverages,en:plant-based-foods,en:cereals-and-potatoes,en:cereals-and-their-products,en:pastas,en:noodles",
+      "code": 23547842018,
+      "fiber_100g": 3.9473684210526,
+      "ingredient_count": 3,
+      "ingredients_text": "organ whole wheat flour organ sift wheat flour sea salt",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 3,
+      "nutriscore_score": 1.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Organic Traditional Whole Wheat Lomein",
+      "saturated-fat_100g": 0.0,
+      "sodium_per_calorie": 0.0005752416014726,
+      "sugar_fiber_ratio": 1.3003901170351104,
+      "sugars_100g": 5.2631578947368
+    },
+    "product_name": "Organic Traditional Whole Wheat Lomein",
+    "recommendations": [
+      [
+        "Whole wheat wide egg noodles",
+        1,
+        3003400031
+      ],
+      [
+        "Pasta Shells",
+        1,
+        810159830607
+      ],
+      [
+        "Nitka wiejska soup noodles",
+        1,
+        811565011314
+      ]
+    ],
+    "success": true
+  },
+  "Cream of chicken soup": {
+    "cluster_id": 1,
+    "explain_nova": "This product received its NOVA score of 4 due to the presence of multiple highly processed ingredients, including corn starch and soy protein concentr. (19 words)",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.0434782608695652,
+      "additives_n": 1.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 7.2,
+      "categories_tags": "en:canned-foods,en:meals,en:soups,en:canned-meals,en:canned-soups",
+      "code": 70038648604,
+      "fiber_100g": 0.0,
+      "ingredient_count": 22,
+      "ingredients_text": "chicken broth corn starch cook white chicken meat white chicken meat water rice starch salt chicken fat soybean oil rice flour contain less cream sea salt potassium chlorid whey protein concentr soy protein concentr natur flavor salt yeast extract garlic powder onion powder beta caroten color lactic acid spice",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 10.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Cream of chicken soup",
+      "saturated-fat_100g": 1.6,
+      "sodium_per_calorie": 0.0070103092783505,
+      "sugar_fiber_ratio": 32.0,
+      "sugars_100g": 3.2
+    },
+    "product_name": "Cream of chicken soup",
+    "recommendations": [
+      [
+        "Albacore tuna solid white in water",
+        1,
+        719283262134
+      ],
+      [
+        "Wild albacore tuna in water",
+        1,
+        817974022514
+      ],
+      [
+        "Chunk white albacore tuna in water",
+        1,
+        20010577
+      ]
+    ],
+    "success": true
+  },
+  "Tortellini rosa": {
+    "cluster_id": 1,
+    "explain_nova": "This product received a NOVA score of 4 due to high presence of ultra-processed ingredients such as modified food starch and soybean oil. (19 words)",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.0,
+      "additives_n": 0.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 23.35,
+      "categories_tags": "en:plant-based-foods-and-beverages,en:plant-based-foods,en:cereals-and-potatoes,en:cereals-and-their-products,en:pastas",
+      "code": 29737014012,
+      "fiber_100g": 0.9,
+      "ingredient_count": 33,
+      "ingredients_text": "tortellini extra fanci durum flour mill wheat niacin ferrou sulfat thiamin mono-nitr riboflavin folic acid water pasteur egg whole milk ricotta chees pasteur milk cream vinegar salt bread crumb wheat flour soybean oil yeast import pecorino romano chees pasteur sheep milk rennet bacteri cultur salt dough mix corn flour corn oil beta caroten parsley season sauc heavi cream tomato milk pure oliv oil modifi food starch garlic sugar salt spice",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 11.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Tortellini rosa",
+      "saturated-fat_100g": 5.73,
+      "sodium_per_calorie": 0.0015927601809954,
+      "sugar_fiber_ratio": 3.08,
+      "sugars_100g": 3.08
+    },
+    "product_name": "Tortellini rosa",
+    "recommendations": [
+      [
+        "Yolk free broad noodle style pasta",
+        1,
+        3003406672
+      ],
+      [
+        "Enriched macaroni product, penne",
+        1,
+        74026808094
+      ],
+      [
+        "Enriched macaroni product, medium wide noodles",
+        1,
+        74026808087
+      ]
+    ],
+    "success": true
+  },
+  "Leo's, ravioli, spinach & cheese": {
+    "cluster_id": 1,
+    "explain_nova": "This product received a NOVA score of 4 due to its highly modified ingredient list with many added and processed components.",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.04,
+      "additives_n": 1.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 31.86,
+      "categories_tags": "en:plant-based-foods-and-beverages,en:plant-based-foods,en:cereals-and-potatoes,en:cereals-and-their-products,en:pastas",
+      "code": 859924003020,
+      "fiber_100g": 1.8,
+      "ingredient_count": 24,
+      "ingredients_text": "dough whole grain brown rice flour modifi tapioca starch egg xanthan gum salt water fill whole milk ricotta chees sweet whey whole milk sweet cream cultur vinegar salt spinach asiago chees pasteur part-skim cow milk chees cultur salt enzym parmesan chees pasteur part-skim cow milk chees cultur salt enzym romano chees pasteur cow milk chees cultur salt enzym dehydr potato potato salt spice",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 11.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Leo's, ravioli, spinach & cheese",
+      "saturated-fat_100g": 3.54,
+      "sodium_per_calorie": 0.0021471861471861,
+      "sugar_fiber_ratio": 0.0,
+      "sugars_100g": 0.0
+    },
+    "product_name": "Leo's, ravioli, spinach & cheese",
+    "recommendations": [
+      [
+        "Yolk free broad noodle style pasta",
+        1,
+        3003406672
+      ],
+      [
+        "Enriched macaroni product, penne",
+        1,
+        74026808094
+      ],
+      [
+        "Enriched macaroni product, medium wide noodles",
+        1,
+        74026808087
+      ]
+    ],
+    "success": true
+  },
+  "Cheese ravioli": {
+    "cluster_id": 1,
+    "explain_nova": "This product received a NOVA score of 4 due to its presence of citric acid, indicating ultra-processing. (19 words)",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.0952380952380952,
+      "additives_n": 2.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 39.13,
+      "categories_tags": "en:plant-based-foods-and-beverages,en:plant-based-foods,en:cereals-and-potatoes,en:cereals-and-their-products,en:pastas",
+      "code": 72036014689,
+      "fiber_100g": 1.7,
+      "ingredient_count": 20,
+      "ingredients_text": "pasta enrich wheat durum semolina enrich niacin ferrou sulfat thiamin mononitr riboflavin folic acid water whole pasteur egg fill chees ricotta parmesan romano pasteur cow milk whey salt lipas microbi enzym bacteri cultur citric acid toast wheat crumb wheat flour yeast whole pasteur egg salt spice",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 3.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Cheese ravioli",
+      "saturated-fat_100g": 2.17,
+      "sodium_per_calorie": 0.0010696721311475,
+      "sugar_fiber_ratio": 1.45,
+      "sugars_100g": 2.61
+    },
+    "product_name": "Cheese ravioli",
+    "recommendations": [
+      [
+        "Yolk free broad noodle style pasta",
+        1,
+        3003406672
+      ],
+      [
+        "Enriched macaroni product, penne",
+        1,
+        74026808094
+      ],
+      [
+        "Enriched macaroni product, medium wide noodles",
+        1,
+        74026808087
+      ]
+    ],
+    "success": true
+  },
+  "Mint Chocolate Cookie": {
+    "cluster_id": 3,
+    "explain_nova": "This product received a NOVA score of 4 due to its high sugar content (8.82g/100g) and presence of xylitol.",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.4444444444444444,
+      "additives_n": 4.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 14.7,
+      "categories_tags": "en:dietary-supplements,en:bodybuilding-supplements,en:protein-powders",
+      "code": 850027959184,
+      "fiber_100g": 5.88,
+      "ingredient_count": 8,
+      "ingredients_text": "whey protein isol xylitol natur flavor cocoa powder sea salt guar gum xanthan gum stevia leaf extract",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 8.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Mint Chocolate Cookie",
+      "saturated-fat_100g": 0.0,
+      "sodium_per_calorie": 0.0016949152542372,
+      "sugar_fiber_ratio": 1.4749163879598663,
+      "sugars_100g": 8.82
+    },
+    "product_name": "Mint Chocolate Cookie",
+    "recommendations": [
+      [
+        "High protein bar chocolate coconut",
+        1,
+        856513002822
+      ],
+      [
+        "Simple sunflower seed protein",
+        1,
+        852457007435
+      ],
+      [
+        "Plant Based Protein",
+        1,
+        851856008623
+      ]
+    ],
+    "success": true
+  },
+  "Mini ravioli, 3 cheese": {
+    "cluster_id": 1,
+    "explain_nova": "This product received its NOVA score of 4 due to its high reliance on minimally processed ingredients and additives.",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.1702127659574468,
+      "additives_n": 8.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 49.17,
+      "categories_tags": "en:plant-based-foods-and-beverages,en:plant-based-foods,en:cereals-and-potatoes,en:cereals-and-their-products,en:pastas",
+      "code": 779566111719,
+      "fiber_100g": 2.5,
+      "ingredient_count": 46,
+      "ingredients_text": "pasta enrich durum wheat semolina enrich niacin ferrou sulfat thiamin mononitr riboflavin folic acid whole pasteur egg water fill chees ricotta romano parmesan pasteur cow milk whey salt lipas microbi enzym bacteri cultur citric acid toast wheat crumb wheat flour yeast canola oil natur romano chees flavor romano chees pasteur cow milk cultur salt enzym water cream salt natur flavor sodium phosphat sodium citrat xanthan gum cream cream pasteur cow milk cellulos gum guar gum locust bean gum mono diglycerid carrageenan water salt yeast extract enrich wheat flour enrich niacin ferrou sulfat thiamin mononitr riboflavin folic acid spice onion powder",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 1.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Mini ravioli, 3 cheese",
+      "saturated-fat_100g": 1.67,
+      "sodium_per_calorie": 0.0008204225352112,
+      "sugar_fiber_ratio": 0.6423076923076922,
+      "sugars_100g": 1.67
+    },
+    "product_name": "Mini ravioli, 3 cheese",
+    "recommendations": [
+      [
+        "Yolk free broad noodle style pasta",
+        1,
+        3003406672
+      ],
+      [
+        "Enriched macaroni product, penne",
+        1,
+        74026808094
+      ],
+      [
+        "Enriched macaroni product, medium wide noodles",
+        1,
+        74026808087
+      ]
+    ],
+    "success": true
+  },
+  "Eggplant parmesan ravioli": {
+    "cluster_id": 1,
+    "explain_nova": "This product received its NOVA score of 4 due to high presence of minimally processed ingredients and added sunflower oil.",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.037037037037037,
+      "additives_n": 1.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 35.0,
+      "categories_tags": "en:plant-based-foods-and-beverages,en:plant-based-foods,en:cereals-and-potatoes,en:cereals-and-their-products,en:pastas",
+      "code": 8006013990903,
+      "fiber_100g": 2.5,
+      "ingredient_count": 26,
+      "ingredients_text": "fill saute eggplant eggplant tomato oliv oil sunflow oil garlic salt mozzarella chees milk salt rennet breadcrumb wheat flour natur yeast salt roast tomato provolon chees milk salt rennet sunflow oil lactos basil past basil sunflow oil salt bake soda salt garlic pasta soft wheat flour pasteur egg durum wheat semolina tomato powder",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 11.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Eggplant parmesan ravioli",
+      "saturated-fat_100g": 3.75,
+      "sodium_per_calorie": 0.0018115942028985,
+      "sugar_fiber_ratio": 2.4038461538461537,
+      "sugars_100g": 6.25
+    },
+    "product_name": "Eggplant parmesan ravioli",
+    "recommendations": [
+      [
+        "Yolk free broad noodle style pasta",
+        1,
+        3003406672
+      ],
+      [
+        "Enriched macaroni product, penne",
+        1,
+        74026808094
+      ],
+      [
+        "Enriched macaroni product, medium wide noodles",
+        1,
+        74026808087
+      ]
+    ],
+    "success": true
+  },
+  "The original cold-pressed lemonade fruit juice drink blend": {
+    "cluster_id": 0,
+    "explain_nova": "This product received a NOVA score of 4 due to its presence of monk fruit extract and blue-green algae.",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.0,
+      "additives_n": 0.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 1.13,
+      "categories_tags": "en:beverages,en:carbonated-drinks,en:sodas",
+      "code": 856646004502,
+      "fiber_100g": 0.0,
+      "ingredient_count": 4,
+      "ingredients_text": "filter water lemon juic monk fruit extract blue-green alga aphanizomenon flos-aqua",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 0.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "The original cold-pressed lemonade fruit juice drink blend",
+      "saturated-fat_100g": 0.0,
+      "sodium_per_calorie": 0.0,
+      "sugar_fiber_ratio": 2.8000000000000003,
+      "sugars_100g": 0.28
+    },
+    "product_name": "The original cold-pressed lemonade fruit juice drink blend",
+    "recommendations": [
+      [
+        "100% Apple Juice",
+        1,
+        41152995318
+      ],
+      [
+        "Lemonade from concentrate",
+        3,
+        7078402464
+      ],
+      [
+        "Sparkling soda",
+        3,
+        851280008145
+      ]
+    ],
+    "success": true
+  },
+  "Chunky Chicken Noodle Soup": {
+    "cluster_id": 1,
+    "explain_nova": "This product received a NOVA score of 4 due to its high content of ultra-processed ingredients like maltodextrin and modified corn starch.",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.0789473684210526,
+      "additives_n": 3.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 5.71,
+      "categories_tags": "en:canned-foods,en:meals,en:soups,en:canned-meals,en:canned-soups",
+      "code": 85239184417,
+      "fiber_100g": 0.4,
+      "ingredient_count": 37,
+      "ingredients_text": "water chicken stock carrot white meat chicken white meat chicken water food starch isol soy protein salt sodium phosphat enrich egg noodl enrich wheat flour wheat flour niacin ferrou sulfat thiamin mononitr riboflavin folic acid egg white whole egg celeri contain less modifi corn starch chicken fat salt monosodium glutam sugar potassium chlorid yeast extract onion powder maltodextrin dextros disodium inosin disodium guanyl dehydr parsley garlic powder natur flavor spice onion broth tomato powder beta caroten color",
+      "monounsaturated-fat_100g": 0.41,
+      "nova_group": 4,
+      "nutriscore_score": 3.0,
+      "polyunsaturated-fat_100g": 0.2,
+      "product_name": "Chunky Chicken Noodle Soup",
+      "saturated-fat_100g": 0.41,
+      "sodium_per_calorie": 0.00644,
+      "sugar_fiber_ratio": 1.64,
+      "sugars_100g": 0.82
+    },
+    "product_name": "Chunky Chicken Noodle Soup",
+    "recommendations": [
+      [
+        "Albacore tuna solid white in water",
+        1,
+        719283262134
+      ],
+      [
+        "Wild albacore tuna in water",
+        1,
+        817974022514
+      ],
+      [
+        "Chunk white albacore tuna in water",
+        1,
+        20010577
+      ]
+    ],
+    "success": true
+  },
+  "Diet cola soda": {
+    "cluster_id": 0,
+    "explain_nova": "This product, containing multiple additives like sodium benzoate and aspartam, received a NOVA score of 4 due to its high level of ultra-processing. (19 words)",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.5555555555555556,
+      "additives_n": 5.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 0.0,
+      "categories_tags": "en:beverages,en:carbonated-drinks,en:artificially-sweetened-beverages,en:sodas,en:diet-beverages,en:colas,en:diet-sodas,en:diet-cola-soft-drink",
+      "code": 11110491985,
+      "fiber_100g": 0.0,
+      "ingredient_count": 8,
+      "ingredients_text": "carbon water caramel color phosphor acid aspartam sodium benzoat preserv citric acid caffein natur flavor",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 4.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Diet cola soda",
+      "saturated-fat_100g": 0.0,
+      "sodium_per_calorie": 0.00704,
+      "sugar_fiber_ratio": NaN,
+      "sugars_100g": 0.0
+    },
+    "product_name": "Diet cola soda",
+    "recommendations": [
+      [
+        "100% Apple Juice",
+        1,
+        41152995318
+      ],
+      [
+        "Lemonade from concentrate",
+        3,
+        7078402464
+      ],
+      [
+        "Sparkling soda",
+        3,
+        851280008145
+      ]
+    ],
+    "success": true
+  },
+  "Diet Soda": {
+    "cluster_id": 0,
+    "explain_nova": "This product received a NOVA score of 4 due to its high presence of phosphor acid, an additive often found in ultra-processed foods.",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.6363636363636364,
+      "additives_n": 7.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 0.0,
+      "categories_tags": "en:beverages,en:carbonated-drinks,en:artificially-sweetened-beverages,en:sodas,en:diet-beverages,en:diet-sodas",
+      "code": 86854036075,
+      "fiber_100g": 0.0,
+      "ingredient_count": 10,
+      "ingredients_text": "carbon water caramel color natur artifici flavor phosphor acid potassium benzoat preserv potassium citrat sucralos caffein acesulfam potassium lactic acid monopotassium phosphat",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 4.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Diet Soda",
+      "saturated-fat_100g": 0.0,
+      "sodium_per_calorie": 0.01,
+      "sugar_fiber_ratio": NaN,
+      "sugars_100g": 0.0
+    },
+    "product_name": "Diet Soda",
+    "recommendations": [
+      [
+        "100% Apple Juice",
+        1,
+        41152995318
+      ],
+      [
+        "Lemonade from concentrate",
+        3,
+        7078402464
+      ],
+      [
+        "Sparkling soda",
+        3,
+        851280008145
+      ]
+    ],
+    "success": true
+  },
+  "Recovery drink pomegranate punch": {
+    "cluster_id": 0,
+    "explain_nova": "This product received its NOVA score of 4 due to high levels of added natural flavor and sweeteners like stevia. (19 words)",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.2,
+      "additives_n": 6.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 3.6619718309859,
+      "categories_tags": "en:beverages,en:carbonated-drinks,en:sodas",
+      "code": 896743002025,
+      "fiber_100g": 0.0,
+      "ingredient_count": 29,
+      "ingredients_text": "carbon water natur erythritol natur sweeten natur flavor vitamin blend taurin d-glucuronolacton sodium citrat ginger extract root chlorid potassium vitamin e acet phosphoru inositol ginseng root powder panax green tea extract egcg caffein vitamin b vitamin b vitamin b vitamin b citric acid natur fruit veget juic color enzym blend bromelain lipas amylas proteas invertas beta-glucanas serrazim stevia",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 0.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Recovery drink pomegranate punch",
+      "saturated-fat_100g": 0.0,
+      "sodium_per_calorie": 0.0042462845010615,
+      "sugar_fiber_ratio": NaN,
+      "sugars_100g": 0.0
+    },
+    "product_name": "Recovery drink pomegranate punch",
+    "recommendations": [
+      [
+        "100% Apple Juice",
+        1,
+        41152995318
+      ],
+      [
+        "Lemonade from concentrate",
+        3,
+        7078402464
+      ],
+      [
+        "Sparkling soda",
+        3,
+        851280008145
+      ]
+    ],
+    "success": true
+  },
+  "Frozen dairy dessert cone": {
+    "cluster_id": 3,
+    "explain_nova": "This product, containing added sugars and palm oil, received its NOVA score of 4 due to its presence of highly processed ingredients.",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.1025641025641025,
+      "additives_n": 4.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 0.0,
+      "categories_tags": "en:desserts,en:frozen-foods,en:frozen-desserts,en:ice-creams-and-sorbets,en:ice-creams,en:ice-cream-cones",
+      "code": 72554001628,
+      "fiber_100g": 0.0,
+      "ingredient_count": 38,
+      "ingredients_text": "distribut oakland socl ruse wi od food good life good talk question comrmerit www drumstick com text cell us --- anytim estl nutrit compass gredient dairi product solid sugar skim milk eanut orn syrup bleach wheat flour coconut oil crea sweeten condens milk condens milk sug r maltodextrin palm oil cocoa water palm ollin reduc miner whey propylen glycol monostear soybean oil soy lecithin dellulos gel guar gum monoglycerid salt carob bean gum natur flavor pectin cellulos um milk chocol bake soda vanilla extract annatto color contain milk wheat peanut soy ingredi",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": NaN,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Frozen dairy dessert cone",
+      "saturated-fat_100g": 0.0,
+      "sodium_per_calorie": NaN,
+      "sugar_fiber_ratio": NaN,
+      "sugars_100g": 0.0
+    },
+    "product_name": "Frozen dairy dessert cone",
+    "recommendations": [
+      [
+        "Ice Cream",
+        3,
+        70640002962
+      ],
+      [
+        "Green Mint Chip Ice Cream",
+        3,
+        855802003809
+      ],
+      [
+        "Secret Breakfast Ice Cream",
+        3,
+        855544006243
+      ]
+    ],
+    "success": true
+  },
+  "Shrimp ramen noodle soup": {
+    "cluster_id": 1,
+    "explain_nova": "This product contains six additives, including TBHQ and sodium carbon disodium inosin, indicative of an ultra-processed nature. (19 words)",
+    "nova_score": 4,
+    "processing_time": "0.001s",
+    "product_macros": {
+      "additive_density": 0.15,
+      "additives_n": 6.0,
+      "allergens_en": null,
+      "carbohydrates_100g": 60.47,
+      "categories_tags": "en:plant-based-foods-and-beverages,en:plant-based-foods,en:cereals-and-potatoes,en:cereals-and-their-products,en:pastas,en:noodles",
+      "code": 41789002373,
+      "fiber_100g": 2.3,
+      "ingredient_count": 39,
+      "ingredients_text": "enrich wheat flour wheat flour niacin reduc iron thiamin mononitr riboflavin folic acid veget oil contain one follow canola cottonse palm preserv tbhq salt dehydr veget carrot green pea garlic maltodextrin monosodium glutam freez dri shrimp sugar hydrolyz corn wheat soy protein yeast extract dehydr soy sauc wheat soybean salt spice caramel color potassium carbon sodium mono hexameta tri - poli phosphat natur flavor sesam oil sodium carbon disodium inosin disodium guanyl chicken broth soya lecithin lactos turmer",
+      "monounsaturated-fat_100g": 0.0,
+      "nova_group": 4,
+      "nutriscore_score": 33.0,
+      "polyunsaturated-fat_100g": 0.0,
+      "product_name": "Shrimp ramen noodle soup",
+      "saturated-fat_100g": 8.14,
+      "sodium_per_calorie": 0.0041467268623024,
+      "sugar_fiber_ratio": 0.9708333333333334,
+      "sugars_100g": 2.33
+    },
+    "product_name": "Shrimp ramen noodle soup",
+    "recommendations": [
+      [
+        "Yolk free broad noodle style pasta",
+        1,
+        3003406672
+      ],
+      [
+        "Enriched macaroni product, penne",
+        1,
+        74026808094
+      ],
+      [
+        "Enriched macaroni product, medium wide noodles",
+        1,
+        74026808087
+      ]
+    ],
+    "success": true
+  }
+}

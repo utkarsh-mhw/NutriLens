@@ -12,6 +12,11 @@ const NutriLens = () => {
   const [recImages, setRecImages] = useState({});
   const GITHUB_REPO_URL = 'https://github.com/utkarsh-mhw/NutriLens';
 
+  const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+  
+  const API_BASE_URL = isProduction ? '/api' : 'http://localhost:5002/api';
+  const API_ENDPOINT = isProduction ? '/analyze_precomputed' : '/analyze';
+
   const demoProducts = [
     { id: 850027959184, name: 'Mint Chocolate Cookie', code: 850027959184, category: 'Snacks' },
     { id: 70253469008, name: 'Enriched egg noodle product, medium egg noodles', code: 70253469008, category: 'Pasta' },
@@ -84,25 +89,37 @@ const NutriLens = () => {
   const analyzeProduct = async (productName) => {
     setLoading(true);
     setAnalysisData(null);
-    setRecImages({}); // Reset recommendation images
+    setRecImages({});
 
     try {
-      const response = await axios.post('http://localhost:5002/api/analyze', {
-        product_name: productName
-      });
+      console.log(`Using ${isProduction ? 'PRODUCTION' : 'LOCAL'} API`);
       
-      let data = response.data;
+      let data;
       
-      if (typeof data === 'string') {
-        data = data.replace(/:\s*NaN/g, ': null');
-        data = JSON.parse(data);
+      if (isProduction) {
+        // PRODUCTION: Load from JSON file
+        const response = await fetch('/precomputed_payloads.json');
+        const allData = await response.json();
+        data = allData[productName];
+      } else {
+        // LOCAL: Use your ML backend
+        const response = await axios.post('http://localhost:5002/api/analyze', {
+          product_name: productName
+        });
+        
+        data = response.data;
+        
+        if (typeof data === 'string') {
+          data = data.replace(/:\s*NaN/g, ': null');
+          data = JSON.parse(data);
+        }
       }
       
       console.log("Getting response:", data);
       console.log("Success:", data.success);
       console.log("NOVA score:", data.nova_score);
 
-      if (data.success) {
+      if (data && data.success) {
         const formattedData = {
           product_name: data.product_name,
           nova_score: data.nova_score,
@@ -118,14 +135,13 @@ const NutriLens = () => {
           recommendations: data.recommendations.map((rec) => ({
             name: rec[0],
             nova: rec[1],
-            code: rec[2], // Product code for fetching image
+            code: rec[2],
           })),
         };
 
         setAnalysisData(formattedData);
         setView('results');
 
-        // Fetch recommendation images in parallel
         formattedData.recommendations.forEach(async (rec) => {
           const imageUrl = await getRecommendationImage(rec.code);
           setRecImages(prev => ({
@@ -134,7 +150,7 @@ const NutriLens = () => {
           }));
         });
       } else {
-        alert(data.error || 'Error analyzing product, try again with a new product!');
+        alert(data?.error || 'Error analyzing product');
       }
     } catch (err) {
       console.error(err);
