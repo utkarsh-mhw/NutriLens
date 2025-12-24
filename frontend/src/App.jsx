@@ -98,7 +98,8 @@ const NutriLens = () => {
       
       if (isProduction) {
         // PRODUCTION: Load from JSON file
-        const response = await fetch('./demo_snapshots/precomputed_payloads.json');
+        // const response = await fetch('./demo_snapshots/precomputed_payloads.json');
+        const response = await fetch(`${import.meta.env.BASE_URL}demo_snapshots/precomputed_payloads.json`);
         const allData = await response.json();
         data = allData[productName];
       } else {
