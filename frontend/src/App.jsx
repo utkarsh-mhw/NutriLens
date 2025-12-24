@@ -107,6 +107,10 @@ const NutriLens = () => {
         const response = await fetch('https://nutri-lens-nu.vercel.app/demo_snapshots/precomputed_payloads.json');
         console.log('Response status:', response.status);
         const allData = await response.json();
+        if (typeof allData === 'string') {
+          allData = allData.replace(/:\s*NaN/g, ': null');
+          allData = JSON.parse(allData);
+        }
         console.log('All data keys:', Object.keys(allData));
         console.log('Looking for product:', productName);
         data = allData[productName];
