@@ -193,6 +193,11 @@ const NutriLens = () => {
     };
     return labels[score] || 'Unknown';
   };
+  const formatNutrient = (value) => {
+    if (value === 0) return 0;
+    return parseFloat(value).toFixed(1);
+  };
+
 
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -392,21 +397,21 @@ const NutriLens = () => {
               <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4">
                 <div className="flex items-center justify-between">
                   <Activity className="text-yellow-600" size={24} />
-                  <span className="text-2xl font-bold text-yellow-600">{analysisData.sugars}g</span>
+                  <span className="text-2xl font-bold text-yellow-600">{formatNutrient(analysisData.sugars)}g</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-2">Sugars / 100g</p>
               </div>
               <div className="bg-green-50 border-2 border-green-200 rounded-xl p-4">
                 <div className="flex items-center justify-between">
                   <Heart className="text-green-600" size={24} />
-                  <span className="text-2xl font-bold text-green-600">{analysisData.fiber}g</span>
+                  <span className="text-2xl font-bold text-green-600">{formatNutrient(analysisData.fiber)}g</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-2">Fiber / 100g</p>
               </div>
               <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
                 <div className="flex items-center justify-between">
                   <Heart className="text-blue-600" size={24} />
-                  <span className="text-2xl font-bold text-blue-600">{analysisData.carbs}g</span>
+                  <span className="text-2xl font-bold text-blue-600">{formatNutrient(analysisData.carbs)}g</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-2">Carbs / 100g</p>
               </div>
