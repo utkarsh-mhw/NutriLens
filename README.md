@@ -1,4 +1,4 @@
-# NutriLens - Intelligent Food Recommendation System
+# NutriLens - ML-Powered Food Analysis & Healthier Alternative Recommendation
 NutriLens predicts NOVA scores and recommends healthier alternatives using ML & LLM explanations.
 
 Food product labels, mandated to display nutritional content, ingredients, and allergens, are often inaccessible to the average consumer due to a lack of domain knowledge required to interpret them. Nutrilens uses machine learning to:
