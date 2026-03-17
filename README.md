@@ -71,7 +71,7 @@ Food product labels, mandated to display nutritional content, ingredients, and a
 
 
 
-### Smart Explnations
+### Smart Explanations
 
 Meta's Llama 3.2 (3B) generates explanations grounded in actual product data—citing specific ingredients, additive counts, and nutritional values—to avoid black-box predictions and reduce hallucination.
 
